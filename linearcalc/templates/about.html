@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/about.css">
+{% endblock head %}
+{% block title %}About{% endblock title %}
+{% block content %}
+<main class="d-flex justify-content-around">
+    <div class="d-flex flex-wrap justify-content-around align-items-center align-content-center">
+        <div class="col-lg-3 d-flex align-items-center flex-column">
+          <img class="rounded-circle" src="../static/images/vinicius.jfif" alt="picture" width="140" height="140">
+          <h2>Vinícius Mariano Afonso</h2>
+          <p>Estudante de Engenharia da computação do 5º semestre na Universidade adventista de São Paulo no campus de Hortolândia.</p>
+          <p><a class="btn btn-secondary" href="https://www.linkedin.com/in/vinicius-mafonso/" role="button">Linkedin »</a></p>
+        </div>
+        <div class="col-lg-3 d-flex align-items-center flex-column">
+          <img class="rounded-circle" src="../static/images/igor.jfif" alt="picture" width="140" height="140">
+          <h2>Igor Marinho Ferreira</h2>
+          <p>Estudante de Engenharia da computação do 5º semestre na Universidade adventista de São Paulo no campus de Hortolândia.</p>
+          <p><a class="btn btn-secondary" href="https://www.linkedin.com/in/igor-marinho-1a8731215/" role="button">Linkedin »</a></p>
+        </div>
+      </div>
+</main>
+{% endblock content %}

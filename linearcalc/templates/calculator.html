@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/calculator.css">
+{% endblock head %}
+{% block title %}Calculator{% endblock title %}
+{% block content %}
+    <main>
+        <h3>Digite as caracteristicas do seu problema</h3>
+        <form class="form" method="POST">
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-group" id="equations">
+                            <label for="equation">Digite seu sistema</label>
+                            <input type="text" class="form-control my-3 input" placeholder="Ex:1x1 + 2x2 - 3x4 - 5x4 = 10" id="equation_1" name="equation" multiple>
+                            <input type="text" class="form-control my-3 input" placeholder="Ex:1x1 + 2x2 - 3x4 - 5x4 = 10" id="equation_2" name="equation" multiple>
+                            <input type="text" class="form-control my-3 input" placeholder="Ex:1x1 + 2x2 - 3x4 - 5x4 = 10" id="equation_3" name="equation" multiple>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <label for="first_step">Digite o valor de aproximação:</label>
+                            <input type="number" class="form-control my-2 " placeholder="Ex:4" id="approximation" name="approximation">
+                        </div>
+                        <div class="form-group">
+                            <label for="first_step">Digite o número de iterações:</label>
+                            <input type="number" class="form-control my-2" placeholder="Ex:10" id="iterations" name="iterations">
+                        </div>
+                        <div class="form-group">
+                            <label for="first_step">Digite o valor que terá a primeira iteração:</label>
+                            <input type="text" class="form-control my-2" placeholder="Ex:0" id="first_step" name="first_step">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"><button type="button" onclick="addInput()" class="btn btn-secondary btn-block mb-4" >Adicionar</button></div>
+                    <div class="col"><button type="button" onclick="clearInputs()" class="btn btn-secondary btn-block mb-4 light-gray" >Mínimo</button></div>
+                    <div class="col"><button type="submit" class="btn btn-primary btn-block mb-4">Resolver</button></div>
+                </div>
+        </form>
+    </main>
+    <script>
+        let equation_index = 3
+        function addInput() {
+            if(equation_index == 10){
+                alert("O limite é de 10 equações")
+            }else{
+                equation_index++
+                var equation = document.createElement("input");
+                equation.type = "text";
+                equation.className = "form-control my-3 input"
+                equation.placeholder = "Ex:1x1 + 2x2 - 3x4 - 5x4 = 10"
+                equation.multiple = true
+                equation.name = "equation"
+                equation.id = "equation_"+equation_index
+
+                var equations = document.getElementById("equations")
+                equations.appendChild(equation);
+            }
+        }
+        function clearInputs(){
+            for (; equation_index > 3; equation_index--) {
+                var equation = document.getElementById("equation_"+equation_index)
+                if(equation.parentNode){
+                    equation.parentNode.removeChild(equation)
+                }
+            }
+        }
+    </script>
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/result.css">
+{% endblock head %}
+{% block title %}About{% endblock title %}
+{% block content %}
+    <main class="container">
+        <h3 class="row justify-content-center">Resultado com resolução</h3>
+        <div class="row justify-content-around">
+            <div class="simple">
+                <h4>Sistema original</h4>
+                <table class="table">
+                    <thead>
+                        <tr class="table-active">
+                            {% for variable in result.variables %}
+                                <th>{{variable}}</th>
+                            {% endfor %}
+                            <th>b</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coeff_group in range(result.coefficients| length) %}
+                            <tr>
+                                {% for coeff in result.coefficients[coeff_group] %}
+                                    <td>{{ coeff }}</td>
+                                {% endfor %}
+                                <td>{{ result.independent_terms[coeff_group] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="simple">
+                <h4>Equações</h4>
+                <table class="table table-bordered">
+                    <tbody>
+                        {% for equation in result.equations %}
+                            <tr>
+                                <td>{{ equation }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="text-center">Resolução</h4>
+            <div class="table-responsive" id="resolution">
+                <table class="table">
+                    <tbody>
+                        <tr class="table-active">
+                            <td>Iteração</td>
+                            {% for iter in range(result.iterations | length) %}
+                                <td>{{iter}}</td>
+                            {% endfor %}
+                        </tr>
+                        {% for variable in range(result.variables | length)  %}
+                        <tr>
+                            <td>{{result.variables[variable]}}</td>
+                            {% set answer = False %}
+                            {% for iter in range(result.iterations | length) %}
+                                {% if result.iterations[iter][variable] == result.iterations[iter-1][variable] and answer == False %}
+                                    <td class="table-success">{{ result.iterations[iter][variable] }}</td>
+                                {% else %}
+                                    <td>{{ result.iterations[iter][variable] }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row my-4 text-center">
+            <a target="_blank" href="https://youtu.be/dy000UuA_ro"><button type="button" class="btn btn-dark">Como fazer?</button></a>
+        </div>
+    </main>
+{% endblock content %}
